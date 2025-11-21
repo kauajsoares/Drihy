@@ -1,0 +1,338 @@
+@import './header.css';
+
+
+/* START MAIN */
+
+main{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+/* CONFIRM BUTTON */
+
+.continuarbutton{
+    display: flex;
+    width: 200px;
+    height: 40px;
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.continuarbutton a{
+    color: #FFF;
+    font-weight: bold;
+}
+
+/* CONFIRM BUTTON */
+
+                        /* CARTAO INPUTS */
+
+input[id="cardnumber"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 200px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+    
+}
+
+input[id="valitycard"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 65px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="securitycard"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 60px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="cardname"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 200px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+select[id="parcelamento"]{
+    background-color: white;
+    height: 40px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 165px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+                        /* FIM CARTAO INPUTS */
+
+                        /* PIX E BOLETOS INPUTS */
+
+input[id="pixname"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="cpfpix"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="datadenascimento"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+                        /* FIM PIX E BOLETOS INPUTS */
+
+/* FIM PIX E BOLETOS INPUTS */
+
+input[id="name"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+input[id="cpf"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+input[id="datadenascimento"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+/* FIM PIX E BOLETOS INPUTS */
+
+                        /* FRETE INPUTS */
+
+input[id="endereco"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 260px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="cep"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 150px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+input[id="cidade"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 150px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+select[id="estado"]{
+    background-color: white;
+    height: 40px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 65px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+
+input[id="numero"]{
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 150px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+/* FIM FRETE INPUTS */
+
+.paymentdiv{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 50px;
+}
+
+/* PAYMENT FORMULARY */
+
+.paymentforms{
+    width: 400px;
+    height: 150px;
+    border: 1px solid #c4c4c4;
+}
+
+.subtotal{
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    gap: 15px;
+}
+
+.subtotaldiv{
+    width: 400px;
+    height: 150px;
+    border: 1px solid #c4c4c4;
+}
+
+.subtotalinformations{
+    margin-top: 5px;
+}
+
+.subtotalconclusion{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+/* PAYMENT FORMULARY */
+
+/* END MAIN */
+
+/* RESPONSIVIDADE */
+
+@media only screen and (max-width: 950px){
+
+    main{
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 414px){
+
+    .paymentforms{
+        width: 350px;
+        height: 250px;
+    }
+    
+    .subtotal{
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+    
+    .subtotaldiv{
+        width: 300px;
+        height: 250px;
+    }
+    
+    .paymentdiv{
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 320px){
+
+    .paymentforms{
+        width: 300px;
+        height: 250px;
+    }
+    
+    .subtotal{
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+    
+    .subtotaldiv{
+        width: 300px;
+        height: 250px;
+    }
+    
+    .paymentdiv{
+        margin-left: 0px;
+    }
+}

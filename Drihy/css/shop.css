@@ -1,0 +1,149 @@
+@import './header.css';
+
+.mainshop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+}
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 600px;
+    margin-left: 100px;
+}
+
+.filters a{
+    color: #000;
+    font-weight: bold;
+}
+
+.shopitems{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    margin-top: 5px;
+    margin-left: 50px;
+    gap: 30px;
+    text-align: center;
+    
+}
+
+.shopitems a{
+    font-style: italic;
+    color: #000;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media only screen and (max-width: 1700px){
+    .shopitems img{
+        width: 150px;
+        height: auto;
+        margin-top: 0px;
+    }
+
+    .shopitems{
+        margin-bottom: 100px;
+    }
+}
+
+@media only screen and (max-width: 1400px){
+    .shopitems img{
+        width: 125px;
+    }
+
+    .shopitems{
+        margin-bottom: 250px;
+    }
+
+    .filters{
+        margin-left: 0px;
+        margin-bottom: 720px;
+    }
+
+}
+
+@media only screen and (max-width: 1155px){
+    .shopitems{
+        grid-template-columns: repeat(4,1fr);
+        gap: 20px;  
+    }
+
+    .shopitems{
+        margin-bottom: 0px;
+    }
+
+    .shopitems img{
+        width: 165px;
+    }
+
+    .filters{
+        margin-bottom: 1030px;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .shopitems{
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .shopitems img{
+        width: 180px;
+    }
+
+    .filters{
+        margin-bottom: 1350px;
+    }
+}
+
+@media only screen and (max-width: 770px){
+    .shopitems{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .shopitems img{
+        width: 200px;
+    }
+
+    .filters{
+        margin-bottom: 2350px;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .shopitems{
+        grid-template-columns: repeat(1,1fr);
+        margin-top: 15px;
+        margin-left: 0px;
+    }
+
+    .shopitems img{
+        width: 350px;
+    }
+
+    .filters{
+        margin-bottom: 50px;
+        font-size: 15px;
+        flex-direction: row;
+    }
+
+    .mainshop{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 320px){
+
+    .shopitems img{
+        width: 300px;
+    }
+
+    .filters{ 
+        font-size: 12px;
+    }
+
+}

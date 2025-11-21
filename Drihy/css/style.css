@@ -1,0 +1,44 @@
+@import './header.css';
+
+/*MAIN*/
+
+.mainindex{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*MAIN*/
+
+/* RESPONSIVIDADE */
+
+@media only screen and (max-width: 1450px){
+    .mainindex img{
+        width: auto;
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width: 1050px){
+  .mainindex img{
+      width: auto;
+      height: 500px;
+  }
+
+  .logo img{
+    width: 100px;
+    height: auto;
+}
+
+.img1 img{
+    width: 100%;
+    height: auto;
+}
+
+.img2,.img3 img{
+    display: none;
+}
+}
+
+/* RESPONSIVIDADE */

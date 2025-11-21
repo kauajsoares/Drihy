@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/productpage.css">
+    <title>Product Page</title>
+</head>
+<body>
+    <header>
+        <div class="navegation">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a class="logo" href="index.html"><img src="assets/logodrihy.jpg" alt="" width="200px" height="100px"></a>
+            <ul class="nav-list">
+                <li>
+                    <a href="shop.html">shop</a>
+                </li>
+                <li>
+                    <a href="contact.html">contact</a>
+                </li>
+                <li>
+                    <a href="login.html">login</a>
+                </li>
+                <li>
+                    <a href="cart.html">cart</a>
+                </li>
+            </ul>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+        <script src="./js/mobile-navbar.js"></script>
+    </header>
+    <main>
+        <div>
+            <div class="productimg">
+                <img id="productImage" alt="Product Image" />
+            </div>
+        </div>
+        <div class="containerproduct">
+            <div class="informationsproduct">
+                <h1 id="productName"></h1>
+                <h2 id="productPrice"></h2>
+            </div>
+            <div class="selectproductsize">
+                <p>size</p>
+                <select name="size" id="sizeselect">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>XLarge</option>
+                    <option>XXLarge</option>
+                </select>
+            </div>
+            <div class="continuarbuttonproduct">
+                <input type="submit" value="Adicionar ao Carrinho" id="addToCartButton" /> 
+            </div>
+            <div class="continuarbuttonproduct">
+                <input type="submit" value="Comprar Agora" id="buyNowButton" />
+            </div>
+        </div>
+    </main>
+<script src="./js/product.js"></script>
+</body>
+</html>

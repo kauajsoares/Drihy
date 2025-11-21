@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/signup.css">
+    <title>signup</title>
+</head>
+<body>
+    <main>
+        <div>
+            <form id="registerForm">
+                <a href="index.html"><img src="assets/logodrihy.jpg" alt="Logotipo da DrihyMode" width="200px" height="100px"></a>
+                <h2>cadastro</h2> 
+                <input placeholder="Endereço de e-mail" type="email" id="email" required/>
+                
+                <input 
+                    placeholder="Senha" 
+                    type="password" 
+                    id="password" 
+                    required
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                    title="A senha deve ter no mínimo 8 caracteres e incluir letras e números."
+                    oninput="checkPasswordMatch()"
+                />
+                
+                <input 
+                    placeholder="Confirme a Senha" 
+                    type="password" 
+                    id="confirmPassword" 
+                    required
+                    oninput="checkPasswordMatch()"
+                />
+                
+                <input 
+                    placeholder="Telefone (DD) 9XXXX-XXXX" 
+                    type="tel" 
+                    id="phone" 
+                    required
+                    inputmode="numeric" 
+                    oninput="validatePhoneCompletion()"
+                />
+                
+                <div class="spam">
+                    Ao criar uma conta, você concorda com a Política de privacidade e com os Termos de uso do DrihyMode.com.br.
+                </div>  
+                <input type="submit" value="Cadastrar" id="registerButton"/>
+            </form>
+        </div>
+        <div class="infobox">
+            <p>Já está registrado? <a href="login.html">Fazer Login</a> </p>
+        </div>
+    </main>
+    <script type="module" src="./js/signup.js"></script>
+</body>
+</html>

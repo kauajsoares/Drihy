@@ -1,0 +1,149 @@
+@import './header.css';
+
+main{
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    height: 100vh;
+}
+
+.productimg img{
+    width: 500px;
+    height: auto;
+    margin-left: 300px;
+}
+
+.containerproduct{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.selectproductsize{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.selectproductsize select{
+    margin-left: 50px;
+}
+
+input[type="submit"] {
+    width: 320px;
+    margin-top: 10px;
+    height: 40px;
+    border: 0;
+    background-color: #000;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+.continuarbuttonproduct a{
+    color: #FFF;
+    font-weight: bold;
+}
+
+select[id="sizeselect"]{
+    background-color: #fff;
+    height: 50px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 250px;
+    color: #000;
+    border: 1px solid #c4c4c4;
+    margin-left: 20px;
+}
+
+/* RESPONSIVIDADE */
+
+@media only screen and (max-width: 1250px){
+    .productimg img{
+        width: 500px;
+        height: auto;
+        margin-left: 100px;
+    }
+    
+    .containerproduct{
+        flex-direction: column;
+        margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 1050px){
+    .productimg img{
+        width: 500px;
+        margin-left: 50px;
+    }
+    
+}
+
+@media only screen and (max-width: 950px){
+    .productimg img{
+        width: 350px;
+    }
+
+    .continuarbuttonproduct{
+        display: flex;
+        width: 250px;
+    }
+
+    .selectproductsize select{
+        margin-left: 10px;
+    }
+
+    .informationsproduct{
+        font-size: 10px;
+    }
+
+    select[id="sizeselect"]{
+        width: 200px;
+    }
+
+}
+
+@media only screen and (max-width: 720px){
+    .productimg img{
+        margin-left: 0px;
+    }
+    
+    .containerproduct{
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+    .continuarbuttonproduct{
+        width: 250px;
+    }
+    
+    .selectproductsize select{
+        margin-left: 10px;
+    }
+
+    .informationsproduct{
+        font-size: 10px;
+    }
+
+}
+
+
+@media only screen and (max-width: 620px){    
+    .productimg img{
+        width: 400px;
+    }
+    .containerproduct{
+        text-align: center;
+    }
+    main{
+        flex-direction: column;
+        margin-top: 10px;
+        align-items: center;
+    }
+ 
+}
+
+
