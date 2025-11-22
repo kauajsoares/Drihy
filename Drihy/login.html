@@ -15,8 +15,24 @@
         <div>
             <form id="loginForm">
                 <a href="index.html"><img src="assets/logodrihy.jpg" alt="Logo" width="200px" height="100px"></a>
-                <input placeholder="Endereço de e-mail" type="email" id="email" required />
-                <input placeholder="Senha" type="password" id="password" required />
+                
+                <div id="loginError" class="error-message"></div>
+                
+                <input 
+                    placeholder="Endereço de e-mail" 
+                    type="text" 
+                    id="email" 
+                    required 
+                    oninput="validateEmailFormat()" 
+                />
+                
+                <input 
+                    placeholder="Senha" 
+                    type="password" 
+                    id="password" 
+                    required 
+                />
+                
                 <div class="spam">
                     Ao fazer login, você concorda com a Política de privacidade e com os Termos de uso do DrihyMode.com.br.
                 </div>
@@ -27,6 +43,6 @@
             <p>Não está registrado? <a href="signup.html">Junte-se a nós.</a></p>
         </div>
     </main>
-    <script type="module" src="./js/signup.js"></script>
+    <script type="module" src="./js/login.js"></script>
 </body>
 </html>

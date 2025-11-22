@@ -16,7 +16,14 @@
             <form id="registerForm">
                 <a href="index.html"><img src="assets/logodrihy.jpg" alt="Logotipo da DrihyMode" width="200px" height="100px"></a>
                 <h2>cadastro</h2> 
-                <input placeholder="Endereço de e-mail" type="email" id="email" required/>
+                
+                <input 
+                    placeholder="Endereço de e-mail" 
+                    type="text" 
+                    id="email" 
+                    required 
+                    oninput="validateEmailFormat()" 
+                />
                 
                 <input 
                     placeholder="Senha" 

@@ -12,12 +12,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDIF0F6kfrjBsGNPGcy5ZCOICELNUIuKeo",
-    authDomain: "drihymode-e8a85.firebaseapp.com",
-    projectId: "drihymode-e8a85",
-    storageBucket: "drihymode-e8a85.appspot.com",
-    messagingSenderId: "420389069070",
-    appId: "1:420389069070:web:2bd2a6a191790d940af75f",
+    apiKey: "AIzaSyAR0UHnCnP2xlOzEOeiQfbIA22DiMCkZ_0",
+    authDomain: "drihy-b016a.firebaseapp.com",
+    projectId: "drihy-b016a",
+    storageBucket: "drihy-b016a.firebasestorage.app",
+    messagingSenderId: "287591768676",
+    appId: "1:287591768676:web:87cef73d215f6667403571",
+    measurementId: "G-9K7HEXTR0E"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -48,9 +49,11 @@ function formatPhone(value) {
     return formatted;
 }
 
-phoneInput.addEventListener('input', (event) => {
-    event.target.value = formatPhone(event.target.value);
-});
+if (phoneInput) {
+    phoneInput.addEventListener('input', (event) => {
+        event.target.value = formatPhone(event.target.value);
+    });
+}
 
 window.checkPasswordMatch = function() {
     const password = document.getElementById('password');
@@ -74,6 +77,17 @@ window.validatePhoneCompletion = function() {
     }
 };
 
+window.validateEmailFormat = function() {
+    const emailInput = document.getElementById('email');
+    const expression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    if (!expression.test(String(emailInput.value).toLowerCase())) {
+        emailInput.setCustomValidity("O e-mail deve ser um formato válido, como exemplo@dominio.com.");
+    } else {
+        emailInput.setCustomValidity('');
+    }
+};
+
 
 function register(event) {
     event.preventDefault();
@@ -83,10 +97,19 @@ function register(event) {
     const confirmPassword = document.getElementById("confirmPassword").value;
     const phone = document.getElementById("phone").value;
 
-    if (!validate_phone(phone)) {
+    // VERIFICAÇÃO DE VALIDAÇÕES ANTES DE ENVIAR (APLICANDO TODAS)
+    if (!validate_email(email) || !validate_password(password) || !validate_phone(phone)) {
+        alert("Erro no formato: Verifique Email, Senha e Telefone.");
         return;
     }
     
+    // Verificação de Confirmação de Senha (se a validação nativa falhar por algum motivo)
+    if (password !== confirmPassword) {
+        alert("Erro: As senhas digitadas não são idênticas.");
+        return;
+    }
+
+
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -99,7 +122,6 @@ function register(event) {
 
             set(ref(database, "users/" + user.uid), user_data)
                 .then(() => {
-                    // REDIRECIONAMENTO APÓS SUCESSO DO CADASTRO E SALVAMENTO DE DADOS
                     window.location.href = 'shop.html'; 
                 })
                 .catch((error) => {
@@ -107,10 +129,10 @@ function register(event) {
                 });
         })
         .catch((error) => {
-             let errorMessage = error.message;
-             if (error.code === 'auth/email-already-in-use') {
-                 errorMessage = 'Este e-mail já está em uso.';
-             }
+            let errorMessage = error.message;
+            if (error.code === 'auth/email-already-in-use') {
+                errorMessage = 'Este e-mail já está em uso.';
+            }
             alert(errorMessage);
         });
 }
@@ -161,7 +183,7 @@ function validate_password(password) {
     if (!passwordRegex.test(password)) {
         return false;
     }
-    return true; 
+    return true;
 }
 
 function validate_phone(phone) {

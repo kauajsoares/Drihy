@@ -6,9 +6,14 @@ function loadCart() {
     let total = 0;
 
     cart.forEach((item, index) => {
-        const itemPrice = parseFloat(item.productPrice.replace('R$', '').replace('.', '').replace(',', '.').trim()); // Limpeza e conversão
-        console.log('Product Price:', item.productPrice);
-        console.log('Parsed Price:', itemPrice);
+        // Garantindo que a limpeza do preço seja feita de forma robusta
+        const priceCleaned = item.productPrice.replace(/[R$\s]/g, '').replace(',', '.').trim();
+        const itemPrice = parseFloat(priceCleaned);
+
+        if (isNaN(itemPrice)) {
+            console.error('Preço inválido para o item:', item.productName);
+            return;
+        }
 
         const itemTotal = itemPrice * item.quantity;
         total += itemTotal;
@@ -27,7 +32,6 @@ function loadCart() {
         cartItemsContainer.appendChild(cartItem);
     });
 
-    console.log('Total:', total);
     document.getElementById('cartTotal').textContent = total.toFixed(2);
 }
 
@@ -38,11 +42,19 @@ function removeFromCart(index) {
     loadCart();
 }
 
+// O clique no botão AGORA APENAS REDIRECIONA (O HTML já foi alterado para 'endereco.html')
 document.getElementById('checkoutButton').addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Compra finalizada!');
-    localStorage.removeItem('cart');
-    loadCart();
+    // A única função do JS aqui é garantir que o clique no link leve ao destino, 
+    // mas a navegação real é feita pelo HTML <a href="endereco.html">
+    // Se precisar de alguma lógica JS antes de navegar, ela seria colocada aqui.
+    // Como não há lógica, o preventDefault e o redirecionamento foram removidos/simplificados.
+    // Se você estiver usando o <a>, pode remover todo este bloco JS e deixar o HTML fazer o trabalho.
+    
+    // Vou remover o preventDefault e o código de alert, deixando o link funcionar.
+    
+    // Deixo o bloco vazio ou o removo, dependendo da necessidade de intervenção JS.
+    // Para limpar, vamos apenas garantir que a navegação ocorra se o carrinho não estiver vazio (lógica futura).
+    // Por enquanto, o link HTML (a href="endereco.html") fará a navegação.
 });
 
 loadCart();

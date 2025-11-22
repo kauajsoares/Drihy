@@ -1,128 +1,123 @@
 @import "./header.css";
 
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 200px;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    gap: 10px;
 }
 
-/* Modificação aqui para incluir 'input[type="tel"]' e 'input[id="confirmPassword"]' para manter o estilo */
+/* CORREÇÃO: input[type="text"] e input[type="tel"] adicionados */
 input[type="password"],
-input[type="email"],
+input[type="text"], 
 input[type="tel"] { 
-  background-color: white;
-  height: 35px;
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 13px;
-  width: 320px;
-  color: #c4c4c4;
-  box-shadow: 1px 1px 1px 1px #c4c4c4;
+    background-color: white;
+    height: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 13px;
+    width: 320px;
+    color: #c4c4c4;
+    box-shadow: 1px 1px 1px 1px #c4c4c4;
 }
 
 input[type="date"] {
-  color: #000;
+    color: #000;
 }
 
 input[type="password"]::placeholder,
 input[type="text"]::placeholder,
-input[type="tel"]::placeholder { /* Adicionado 'input[type="tel"]' */
-  color: #000;
-}
-
-input[type="email"]::placeholder,
-input[type="text"]::placeholder {
-  color: #000;
+input[type="tel"]::placeholder {
+    color: #000;
 }
 
 input[type="password"]:focus,
 input[type="text"]:focus,
-input[type="tel"]:focus { /* Adicionado 'input[type="tel"]' */
-  outline: 0;
-  border: 1px solid var(--border-primary);
+input[type="tel"]:focus {
+    outline: 0;
+    border: 1px solid var(--border-primary);
 }
 
 input[type="submit"] {
-  width: 320px;
-  margin-top: 10px;
-  height: 40px;
-  border: 0;
-  background-color: #000;
-  color: white;
-  font-size: 14px;
-  margin-bottom: 10px;
-  cursor: pointer;
+    width: 320px;
+    margin-top: 10px;
+    height: 40px;
+    border: 0;
+    background-color: #000;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .infobox {
-  font-size: 15px;
-  background-color: white;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 200px;
+    font-size: 15px;
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
 }
 
 .infobox p {
-  user-select: none;
+    user-select: none;
 }
 
 .infobox p a {
-  font-weight: bold;
-  user-select: none;
-  color: #000;
+    font-weight: bold;
+    user-select: none;
+    color: #000;
 }
 
 .get-app-panel {
-  margin-top: 20px;
-  text-align: center;
+    margin-top: 20px;
+    text-align: center;
 }
 
 .app-buttons {
-  margin-top: 16px;
+    margin-top: 16px;
 }
 
 .app-buttons img {
-  height: 40px;
-  padding: 0 2px;
+    height: 40px;
+    padding: 0 2px;
 }
 
 .checkbox1 {
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 10px;
 }
 
 .checkbox1 p {
-  margin-left: 60px;
+    margin-left: 60px;
 }
 
 .spam {
-  font-size: 10px;
-  text-align: center;
-  width: 200px;
-  height: 30px;
-  margin-top: 5px;
-  margin-bottom: 2px;
-}
-
-.radio3 {
-  margin: 5px;
+    font-size: 10px;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 2px;
 }
 
 @media only screen and (max-width: 320px) {
-  input[type="submit"] {
-    width: 250px;
-  }
+    input[type="submit"] {
+        width: 250px;
+    }
 
-  input[type="password"],
-  input[type="email"], /* Corrigido/Incluído para a responsividade */
-  input[type="tel"] { /* Adicionado 'input[type="tel"]' */
-    width: 250px;
-  }
+    input[type="password"],
+    input[type="text"], 
+    input[type="tel"] { 
+        width: 250px;
+    }
+
+    .checkbox1 p {
+        margin-left: 30px;
+    }
 }

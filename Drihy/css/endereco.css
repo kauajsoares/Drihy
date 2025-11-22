@@ -1,0 +1,109 @@
+@import './header.css'; /* Importa estilos globais, presumindo que contém cores e fontes */
+
+/* ESTILOS DA TELA DE ENDEREÇO */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha no topo para evitar que o form fique no meio da tela */
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* Limita a largura para melhor visualização */
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #000;
+    text-align: center;
+}
+
+/* Estilo para a caixa de erro (similar ao login/cadastro) */
+.error-message {
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    display: none; 
+}
+
+/* ESTILOS DO FORMULÁRIO */
+#addressForm {
+    display: flex;
+    flex-direction: column;
+    width: 320px; /* Largura padrão dos inputs do seu projeto */
+    gap: 10px;
+}
+
+/* Estilo dos Inputs */
+#addressForm input[type="text"],
+#addressForm input[type="tel"] {
+    background-color: #fff;
+    height: 35px;
+    padding: 10px;
+    font-size: 13px;
+    width: 100%; /* Ajusta à largura do formulário (320px) */
+    color: #000;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Grupo de campos (Número e Complemento, Cidade e Estado) */
+.field-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.field-group .half-width {
+    width: 50%; /* Faz com que dois campos caibam lado a lado com o gap */
+}
+
+/* Estilo do Botão de Envio (Reutilizado do seu padrão) */
+input[type="submit"] {
+    width: 100%; /* Ajustado para 100% (320px) */
+    margin-top: 20px;
+    height: 40px;
+    border: 0;
+    background-color: #000;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.infobox {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.infobox a {
+    font-weight: bold;
+    color: #000;
+}
+
+/* RESPONSIVIDADE */
+@media only screen and (max-width: 450px) {
+    .checkout-container, #addressForm {
+        max-width: 90%;
+        width: 90%;
+    }
+    .field-group {
+        flex-direction: column; /* Em telas muito pequenas, empilha campos lado a lado */
+    }
+    .field-group .half-width {
+        width: 100%; 
+    }
+}
