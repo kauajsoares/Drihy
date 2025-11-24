@@ -44,8 +44,8 @@ function login(event) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    if (!validate_email(email)) {
-        displayLoginError("Erro: O formato do e-mail está incorreto. Verifique as regras de validação.");
+    if (!validate_email(email) || !validate_password(password)) {
+        displayLoginError("Erro: O formato do e-mail ou senha está incorreto. Verifique as regras de validação.");
         return;
     }
 
@@ -59,7 +59,7 @@ function login(event) {
 
             update(ref(database, "users/" + user.uid), user_data)
                 .then(() => {
-                    window.location.href = 'shop.html'; 
+                    // REMOVIDO: O redirecionamento para 'shop.html'
                 })
                 .catch((error) => {
                     displayLoginError("Erro ao atualizar dados: " + error.message);

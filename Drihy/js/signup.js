@@ -1,29 +1,13 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { auth, database, validate_email, validate_password } from "./firebase-config.js";
 import {
-    getDatabase,
     ref,
     set,
     update,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import {
-    getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAR0UHnCnP2xlOzEOeiQfbIA22DiMCkZ_0",
-    authDomain: "drihy-b016a.firebaseapp.com",
-    projectId: "drihy-b016a",
-    storageBucket: "drihy-b016a.firebasestorage.app",
-    messagingSenderId: "287591768676",
-    appId: "1:287591768676:web:87cef73d215f6667403571",
-    measurementId: "G-9K7HEXTR0E"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const database = getDatabase(app);
 
 const phoneInput = document.getElementById("phone");
 
@@ -66,11 +50,18 @@ window.checkPasswordMatch = function() {
     }
 };
 
+function validate_phone(phone) {
+    const digits = phone.replace(/\D/g, ''); 
+    if (digits.length != 11) {
+        return false;
+    }
+    return true;
+}
+
 window.validatePhoneCompletion = function() {
     const phone = document.getElementById('phone');
-    const phoneRegex = /^\(\d{2}\)\s\d\s\d{4}-\d{4}$/; 
-
-    if (!phoneRegex.test(phone.value)) {
+    
+    if (!validate_phone(phone.value)) {
         phone.setCustomValidity("O telefone não está completo. Por favor, digite (DD) 9XXXX-XXXX.");
     } else {
         phone.setCustomValidity('');
@@ -79,33 +70,65 @@ window.validatePhoneCompletion = function() {
 
 window.validateEmailFormat = function() {
     const emailInput = document.getElementById('email');
-    const expression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
-    if (!expression.test(String(emailInput.value).toLowerCase())) {
+    if (!validate_email(emailInput.value)) {
         emailInput.setCustomValidity("O e-mail deve ser um formato válido, como exemplo@dominio.com.");
     } else {
         emailInput.setCustomValidity('');
     }
 };
 
+function displayLoginError(message) {
+    const errorDiv = document.getElementById('loginError');
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block'; 
+    }
+}
+function clearLoginError() {
+    const errorDiv = document.getElementById('loginError');
+    if (errorDiv) {
+        errorDiv.style.display = 'none'; 
+        errorDiv.textContent = '';
+    }
+}
+
+function displayRegisterError(message) {
+    const errorDiv = document.getElementById('registerError');
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block'; 
+    }
+}
+function clearRegisterError() {
+    const errorDiv = document.getElementById('registerError');
+    if (errorDiv) {
+        errorDiv.style.display = 'none'; 
+        errorDiv.textContent = '';
+    }
+}
+
 
 function register(event) {
     event.preventDefault();
+    clearRegisterError();
+
+    // GARANTE QUE DADOS ANTIGOS SEJAM REMOVIDOS AO CRIAR CONTA NOVA
+    localStorage.removeItem('checkout_address');
+    localStorage.removeItem('checkout_payment');
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     const phone = document.getElementById("phone").value;
 
-    // VERIFICAÇÃO DE VALIDAÇÕES ANTES DE ENVIAR (APLICANDO TODAS)
     if (!validate_email(email) || !validate_password(password) || !validate_phone(phone)) {
-        alert("Erro no formato: Verifique Email, Senha e Telefone.");
+        displayRegisterError("Erro no formato: Verifique Email, Senha e Telefone.");
         return;
     }
     
-    // Verificação de Confirmação de Senha (se a validação nativa falhar por algum motivo)
     if (password !== confirmPassword) {
-        alert("Erro: As senhas digitadas não são idênticas.");
+        displayRegisterError("Erro: As senhas digitadas não são idênticas.");
         return;
     }
 
@@ -125,26 +148,31 @@ function register(event) {
                     window.location.href = 'shop.html'; 
                 })
                 .catch((error) => {
-                    alert("Erro ao gravar dados do usuário: " + error.message);
+                    displayRegisterError("Erro ao gravar dados do usuário: " + error.message);
                 });
         })
         .catch((error) => {
-            let errorMessage = error.message;
+            let errorMessage = "Ocorreu um erro desconhecido. Tente novamente.";
+            
             if (error.code === 'auth/email-already-in-use') {
                 errorMessage = 'Este e-mail já está em uso.';
+            } else if (error.code === 'auth/weak-password') {
+                errorMessage = 'A senha é muito fraca. Ela deve ter pelo menos 6 caracteres.';
             }
-            alert(errorMessage);
+            
+            displayRegisterError(errorMessage);
         });
 }
 
 function login(event) {
     event.preventDefault();
+    clearLoginError();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     if (!validate_email(email) || !validate_password(password)) {
-        alert("Email ou Senha fora de linha");
+        displayLoginError("Erro: O formato do e-mail ou senha está incorreto. Verifique as regras de validação.");
         return;
     }
 
@@ -158,46 +186,31 @@ function login(event) {
 
             update(ref(database, "users/" + user.uid), user_data)
                 .then(() => {
-                    alert("Usuário logado com sucesso!");
+                    window.location.href = 'shop.html';
                 })
                 .catch((error) => {
-                    alert("Erro ao atualizar dados do usuário: " + error.message);
+                    displayLoginError("Erro ao atualizar dados do usuário no RTDB: " + error.message);
                 });
         })
         .catch((error) => {
-            alert(error.message);
+            let userMessage = "Ocorreu um erro desconhecido. Tente novamente.";
+            
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                userMessage = 'Usuário ou senha inválido.'; 
+            } else if (error.code === 'auth/invalid-email') {
+                userMessage = 'O e-mail fornecido não é válido.';
+            }
+
+            displayLoginError(userMessage);
         });
-}
-
-function validate_email(email) {
-    const expression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!expression.test(String(email).toLowerCase())) {
-        return false;
-    }
-    return true;
-}
-
-function validate_password(password) {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    
-    if (!passwordRegex.test(password)) {
-        return false;
-    }
-    return true;
-}
-
-function validate_phone(phone) {
-    const phoneRegex = /^\(\d{2}\)\s\d\s\d{4}-\d{4}$/; 
-
-    if (!phoneRegex.test(phone)) {
-        return false;
-    }
-    return true;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
+        // Limpa dados antigos se o usuário apenas abrir a página de cadastro
+        localStorage.removeItem('checkout_address');
+        localStorage.removeItem('checkout_payment');
         registerForm.addEventListener("submit", register);
     }
 

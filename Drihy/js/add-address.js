@@ -1,3 +1,6 @@
+import { auth, database } from "./firebase-config.js";
+import { ref, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 function onlyNumbers(event) {
     const key = event.key;
@@ -8,12 +11,10 @@ function onlyNumbers(event) {
         return;
     }
     
-
     if (key.length === 1 && !/\d/.test(key)) {
         event.preventDefault();
     }
 }
-
 
 function maskCEP(input) {
     let value = input.value.replace(/\D/g, ""); 
@@ -40,19 +41,15 @@ function validateCEPCompletion(input) {
 }
 
 document.getElementById('addressForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
     const cepInput = document.getElementById('cep');
     validateCEPCompletion(cepInput); 
     
-
     const form = e.target;
     if (form.checkValidity() === false) {
-
-        e.preventDefault(); 
         return;
     }
-
-
-    e.preventDefault(); 
     
     const addressData = {
         cep: document.getElementById('cep').value,
@@ -63,12 +60,27 @@ document.getElementById('addressForm').addEventListener('submit', (e) => {
         cidade: document.getElementById('cidade').value,
         estado: document.getElementById('estado').value
     };
+
     localStorage.setItem('checkout_address', JSON.stringify(addressData));
-    
-    window.location.href = 'pagamento.html'; 
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            update(ref(database, "users/" + user.uid + "/address"), addressData)
+                .then(() => {
+                    window.location.href = 'profile.html'; 
+                })
+                .catch((error) => {
+                    alert("Erro ao salvar endereço: " + error.message);
+                });
+        } else {
+            window.location.href = 'login.html';
+        }
+    });
 });
 
-
+document.getElementById('cancelButton').addEventListener('click', () => {
+    window.location.href = 'profile.html';
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const cepInput = document.getElementById('cep');

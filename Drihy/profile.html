@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/profile.css">
+    <title>Meu Perfil</title>
+</head>
+<body>
+    <header>
+        <div class="navegation">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a class="logo" href="index.html"><img src="assets/logodrihy.jpg" alt="" width="200px" height="100px"></a>
+            <ul class="nav-list">
+                <li><a href="shop.html">shop</a></li>
+                <li><a href="contact.html">contact</a></li>
+                <li><a href="cart.html">cart</a></li>
+                <li><a href="profile.html">perfil</a></li>
+                <li><a href="login.html">login</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+        <script src="/js/mobile-navbar.js"></script>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <h1>Meu Perfil</h1>
+            
+            <div class="profile-info">
+                <label for="displayEmail">E-mail</label>
+                <input type="text" id="displayEmail" disabled value="Carregando..." />
+
+                <label for="displayPhone">Telefone</label>
+                <input type="text" id="displayPhone" disabled value="Carregando..." />
+
+                <label for="displayAddress">Endereço de Entrega (Último utilizado)</label>
+                <textarea id="displayAddress" disabled rows="3">Nenhum endereço salvo</textarea>
+                <button id="editAddressBtn" class="small-action-btn">Alterar / Adicionar Endereço</button>
+
+                <label for="displayPayment">Método de Pagamento Padrão</label>
+                <input type="text" id="displayPayment" disabled value="Não definido" />
+            </div>
+
+            <div class="profile-actions">
+                <button id="myOrdersBtn">Meus Pedidos</button>
+                <button id="logoutBtn" class="logout-button">Sair da Conta</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./js/profile.js"></script>
+</body>
+</html>

@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/endereco.css"> 
-    <title>Endereço de Entrega</title>
+    <link rel="stylesheet" href="css/add-address.css"> 
+    <title>Adicionar Endereço</title>
 </head>
 <body>
     <header>
@@ -17,18 +17,11 @@
             <a href="#"></a>
             <a class="logo" href="index.html"><img src="assets/logodrihy.jpg" alt="" width="200px" height="100px"></a>
             <ul class="nav-list">
-                <li>
-                    <a href="shop.html">shop</a>
-                </li>
-                <li>
-                    <a href="contact.html">contact</a>
-                </li>
-                <li>
-                    <a href="login.html">login</a>
-                </li>
-                <li>
-                    <a href="cart.html">cart</a>
-                </li>
+                <li><a href="shop.html">shop</a></li>
+                <li><a href="contact.html">contact</a></li>
+                <li><a href="cart.html">cart</a></li>
+                <li><a href="profile.html">perfil</a></li>
+                <li><a href="login.html">login</a></li>
             </ul>
             <div class="mobile-menu">
                 <div class="line1"></div>
@@ -40,7 +33,7 @@
     </header>
     <main>
         <div class="checkout-container">
-            <h1>Endereço de Entrega</h1>
+            <h1>Adicionar Endereço</h1>
             <div id="addressError" class="error-message"></div>
 
             <form id="addressForm">
@@ -50,8 +43,6 @@
                     id="cep" 
                     required 
                     maxlength="9"
-                    onkeydown="onlyNumbers(event)" 
-                    oninput="maskCEP(this)"
                 />
                 
                 <input placeholder="Rua / Avenida" type="text" id="rua" required />
@@ -68,14 +59,11 @@
                     <input placeholder="Estado (Ex: SP)" type="text" id="estado" required maxlength="2" class="half-width" />
                 </div>
 
-                <input type="submit" value="Continuar para Pagamento" id="continueButton" />
+                <input type="submit" value="Salvar Endereço" id="saveButton" />
+                <button type="button" id="cancelButton" class="cancel-button">Cancelar</button>
             </form>
-
-            <div class="infobox">
-                <p>Voltar ao <a href="cart.html">Carrinho</a></p>
-            </div>
         </div>
     </main>
-    <script type="module" src="./js/endereco.js"></script>
+    <script type="module" src="./js/add-address.js"></script>
 </body>
 </html>

@@ -3,12 +3,14 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDIF0F6kfrjBsGNPGcy5ZCOICELNUIuKeo",
-    authDomain: "drihymode-e8a85.firebaseapp.com",
-    projectId: "drihymode-e8a85",
-    storageBucket: "drihymode-e8a85.appspot.com",
-    messagingSenderId: "420389069070",
-    appId: "1:420389069070:web:2bd2a6a191790d940af75f",
+  apiKey: "AIzaSyAR0UHnCnP2xlOzEOeiQfbIA22DiMCkZ_0",
+  authDomain: "drihy-b016a.firebaseapp.com",
+  databaseURL: "https://drihy-b016a-default-rtdb.firebaseio.com",
+  projectId: "drihy-b016a",
+  storageBucket: "drihy-b016a.firebasestorage.app",
+  messagingSenderId: "287591768676",
+  appId: "1:287591768676:web:87cef73d215f6667403571",
+  measurementId: "G-9K7HEXTR0E"
 };
 
 const app = initializeApp(firebaseConfig);
