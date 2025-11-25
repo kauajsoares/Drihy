@@ -1,87 +1,47 @@
-import { auth, database, validate_email, validate_password } from "./firebase-config.js";
-import {
-    update,
-    ref,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import {
-    signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+function loadCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsContainer = document.getElementById('cartItems');
+    cartItemsContainer.innerHTML = '';
 
+    let total = 0;
 
-window.validateEmailFormat = function() {
-    const emailInput = document.getElementById('email');
-    
-    if (!validate_email(emailInput.value)) {
-        emailInput.setCustomValidity("O e-mail deve ser um formato válido, como exemplo@dominio.com.");
-    } else {
-        emailInput.setCustomValidity('');
-    }
-};
+    cart.forEach((item, index) => {
+        // Garantindo que a limpeza do preço seja feita de forma robusta
+        const priceCleaned = item.productPrice.replace(/[R$\s]/g, '').replace(',', '.').trim();
+        const itemPrice = parseFloat(priceCleaned);
 
+        if (isNaN(itemPrice)) {
+            console.error('Preço inválido para o item:', item.productName);
+            return;
+        }
 
-function displayLoginError(message) {
-    const errorDiv = document.getElementById('loginError');
-    if (errorDiv) {
-        errorDiv.textContent = message;
-        errorDiv.style.display = 'block'; 
-    }
+        const itemTotal = itemPrice * item.quantity;
+        total += itemTotal;
+
+        const cartItem = document.createElement('tr');
+        cartItem.innerHTML = `
+            <td><img src="${item.productImage.responsiveImage.src}" alt="${item.productName}" width="100" height="100" /></td>
+            <td>${item.productName}</td>
+            <td>${item.size}</td>
+            <td>R$${itemPrice.toFixed(2)}</td>
+            <td>${item.quantity}</td>
+            <td>R$${itemTotal.toFixed(2)}</td>
+            <td><button id="buttonremove" onclick="removeFromCart(${index})">X</button></td>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    document.getElementById('cartTotal').textContent = total.toFixed(2);
 }
 
-function clearLoginError() {
-    const errorDiv = document.getElementById('loginError');
-    if (errorDiv) {
-        errorDiv.style.display = 'none'; 
-        errorDiv.textContent = '';
-    }
-}
-
-
-function login(event) {
-    event.preventDefault();
-
-    clearLoginError();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    if (!validate_email(email) || !validate_password(password)) {
-        displayLoginError("Erro: O formato do e-mail ou senha está incorreto. Verifique as regras de validação.");
-        return;
-    }
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-
-            const user_data = {
-                last_login: Date.now(),
-            };
-
-            update(ref(database, "users/" + user.uid), user_data)
-                .then(() => {
-                    // REMOVIDO: O redirecionamento para 'shop.html'
-                })
-                .catch((error) => {
-                    displayLoginError("Erro ao atualizar dados: " + error.message);
-                });
-        })
-        .catch((error) => {
-            let userMessage = "Ocorreu um erro desconhecido. Tente novamente.";
-
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                 userMessage = 'Usuário ou senha inválido.'; 
-            } else if (error.code === 'auth/invalid-email') {
-                userMessage = 'O e-mail fornecido não é válido.';
-            }
-
-            displayLoginError(userMessage); 
-        });
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.addEventListener("submit", login);
-    }
-});
+
+loadCart();

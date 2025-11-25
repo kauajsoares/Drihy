@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/payments.css">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <title>Pagamento</title>
+</head>
+<body>
+    <header>
+        <div class="navegation">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a class="logo" href="index.html"><img src="assets/logodrihy.jpg" alt="" width="200px" height="100px"></a>
+            <ul class="nav-list">
+                <li><a href="shop.html">shop</a></li>
+                <li><a href="contact.html">contact</a></li>
+                <li>
+                    <a href="cart.html" class="cart-link">
+                        cart
+                        <span class="cart-badge"></span>
+                    </a>
+                </li>
+                <li><a href="profile.html">perfil</a></li>
+                <li><a href="login.html">login</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+        <script src="./js/mobile-navbar.js"></script>
+    </header>
+
+    <main>
+        <div class="checkout-container">
+            <h1>Pagamento</h1>
+            
+            <div class="summary-box">
+                <p>Total a pagar: <span id="totalAmount">R$ 0,00</span></p>
+            </div>
+
+            <form id="paymentForm">
+                <div class="payment-method-selector">
+                    <label class="radio-container">
+                        <input type="radio" name="paymentMethod" value="credit_card" checked>
+                        <span class="checkmark"></span>
+                        Cartão
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="paymentMethod" value="pix">
+                        <span class="checkmark"></span>
+                        Pix
+                    </label>
+                </div>
+
+                <div id="creditCardSection">
+                    <input 
+                        type="text" 
+                        id="cardNumber" 
+                        placeholder="Número do Cartão" 
+                        maxlength="19" 
+                        required
+                    />
+                    
+                    <input 
+                        type="text" 
+                        id="cardName" 
+                        placeholder="Nome impresso no cartão" 
+                        required
+                    />
+
+                    <div class="field-group">
+                        <input 
+                            type="text" 
+                            id="cardExpiry" 
+                            placeholder="MM/AA" 
+                            maxlength="5" 
+                            class="half-width" 
+                            required
+                        />
+                        <input 
+                            type="text" 
+                            id="cardCvv" 
+                            placeholder="CVV" 
+                            maxlength="4" 
+                            class="half-width" 
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div id="pixSection" style="display: none;">
+                    <p class="pix-instruction">Clique no botão abaixo para gerar o código Pix.</p>
+                    
+                    <button type="button" id="generatePixBtn">Gerar QR Code Pix</button>
+
+                    <div id="qrCodeContainer" style="display: none;">
+                        <img src="" id="qrCodeImage" alt="QR Code Pix" class="qr-image">
+                        
+                        <label class="copy-paste-label">Código Copia e Cola:</label>
+                        <input type="text" class="copy-paste-input" value="00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3-a456-426614174000" readonly>
+                        
+                        <p class="pix-timer">Aguardando pagamento...</p>
+                    </div>
+                </div>
+
+                <input type="submit" value="Finalizar Pedido" id="payButton" />
+            </form>
+
+            <div class="infobox">
+                <p>Voltar para <a href="select-address.html">Endereço</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./js/payments.js"></script>
+</body>
+</html>

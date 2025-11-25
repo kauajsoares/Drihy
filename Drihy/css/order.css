@@ -1,0 +1,150 @@
+@import './header.css';
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #000;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#loadingOrders, #noOrdersMessage {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.shop-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #000;
+    font-weight: 700;
+    border-bottom: 1px solid #000;
+    text-decoration: none;
+}
+
+#ordersList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.order-date {
+    font-size: 12px;
+    color: #555;
+}
+
+.order-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 1px solid #eee;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    display: block;
+}
+
+.item-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.order-footer {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.payment-method {
+    font-size: 12px;
+    color: #555;
+    text-transform: capitalize;
+}
+
+.order-total {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+
+.infobox {
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.infobox a {
+    font-weight: bold;
+    color: #000;
+}
+
+@media only screen and (max-width: 450px) {
+    .orders-container {
+        width: 90%;
+    }
+}

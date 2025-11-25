@@ -24,7 +24,10 @@
                     <a href="contact.html">contact</a>
                 </li>
                 <li>
-                    <a href="cart.html">cart</a>
+                    <a href="cart.html" class="cart-link">
+                        cart
+                        <span class="cart-badge"></span>
+                    </a>
                 </li>
                 <li>
                     <a href="profile.html">perfil</a>
@@ -39,7 +42,7 @@
                 <div class="line3"></div>
             </div>
         </div>
-        <script src="/js/mobile-navbar.js"></script>
+        <script src="./js/mobile-navbar.js"></script>
     </header>
     <main>
         <h1>Carrinho de Compras</h1>
@@ -60,7 +63,7 @@
         </table>
         <h2>Total: R$<span id="cartTotal">0.00</span></h2>
         <div class="continuarbutton">
-            <a href="endereco.html" id="checkoutButton">Finalizar Compra</a>
+            <a href="select-address.html" id="checkoutButton">Finalizar Compra</a>
         </div>
     </main>
 <script src="./js/cart.js"></script>

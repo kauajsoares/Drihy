@@ -40,6 +40,17 @@ function validateCEPCompletion(input) {
     }
 }
 
+function getRedirectUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const origin = urlParams.get('origin');
+
+    if (origin === 'checkout') {
+        return 'select-address.html';
+    } else {
+        return 'profile.html';
+    }
+}
+
 document.getElementById('addressForm').addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -67,7 +78,7 @@ document.getElementById('addressForm').addEventListener('submit', (e) => {
         if (user) {
             update(ref(database, "users/" + user.uid + "/address"), addressData)
                 .then(() => {
-                    window.location.href = 'profile.html'; 
+                    window.location.href = getRedirectUrl();
                 })
                 .catch((error) => {
                     alert("Erro ao salvar endereço: " + error.message);
@@ -79,7 +90,7 @@ document.getElementById('addressForm').addEventListener('submit', (e) => {
 });
 
 document.getElementById('cancelButton').addEventListener('click', () => {
-    window.location.href = 'profile.html';
+    window.location.href = getRedirectUrl();
 });
 
 document.addEventListener('DOMContentLoaded', () => {

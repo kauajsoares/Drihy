@@ -8,7 +8,8 @@ const displayAddress = document.getElementById('displayAddress');
 const displayPayment = document.getElementById('displayPayment');
 const logoutBtn = document.getElementById('logoutBtn');
 const myOrdersBtn = document.getElementById('myOrdersBtn');
-const editAddressBtn = document.getElementById('editAddressBtn'); // Novo botão
+const editAddressBtn = document.getElementById('editAddressBtn');
+const addCardBtn = document.getElementById('addCardBtn');
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -24,10 +25,18 @@ onAuthStateChanged(auth, (user) => {
                     displayPhone.value = "Não cadastrado";
                 }
                 
-                // Tenta carregar endereço do Firebase se não tiver no localStorage
-                if (data.address && !localStorage.getItem('checkout_address')) {
+                if (data.address) {
                      const addressText = `${data.address.rua}, ${data.address.numero}\n${data.address.bairro}, ${data.address.cidade} - ${data.address.estado}\nCEP: ${data.address.cep}`;
                      displayAddress.value = addressText;
+                } else {
+                    const savedAddress = JSON.parse(localStorage.getItem('checkout_address'));
+                    if (savedAddress) {
+                        displayAddress.value = `${savedAddress.rua}, ${savedAddress.numero}\n${savedAddress.bairro}, ${savedAddress.cidade} - ${savedAddress.estado}\nCEP: ${savedAddress.cep}`;
+                    }
+                }
+
+                if (data.card) {
+                    displayPayment.value = `Cartão final ${data.card.number.slice(-4)}`;
                 }
             } else {
                 displayPhone.value = "Dados não encontrados";
@@ -37,26 +46,17 @@ onAuthStateChanged(auth, (user) => {
             displayPhone.value = "Erro ao carregar";
         });
 
-        // Prioriza o LocalStorage (sessão atual)
-        const savedAddress = JSON.parse(localStorage.getItem('checkout_address'));
-        if (savedAddress) {
-            displayAddress.value = `${savedAddress.rua}, ${savedAddress.numero}\n${savedAddress.bairro}, ${savedAddress.cidade} - ${savedAddress.estado}\nCEP: ${savedAddress.cep}`;
-        }
-
-        const savedPayment = JSON.parse(localStorage.getItem('checkout_payment'));
-        if (savedPayment) {
-            displayPayment.value = savedPayment.method; 
-        }
-
     } else {
         window.location.href = "login.html";
     }
 });
 
-// Ação do botão de editar endereço
 editAddressBtn.addEventListener('click', () => {
-    // Redireciona para a página de cadastro de endereço
-    window.location.href = "add-address.html"; 
+    window.location.href = "add-address.html?origin=profile"; 
+});
+
+addCardBtn.addEventListener('click', () => {
+    window.location.href = "add-card.html?origin=profile";
 });
 
 logoutBtn.addEventListener('click', () => {
@@ -68,5 +68,5 @@ logoutBtn.addEventListener('click', () => {
 });
 
 myOrdersBtn.addEventListener('click', () => {
-    alert("Funcionalidade de pedidos em desenvolvimento.");
+    window.location.href = "order.html";
 });

@@ -15,7 +15,7 @@ function formatPhone(value) {
     let cleaned = value.replace(/\D/g, ''); 
     let formatted = '';
 
-    cleaned = cleaned.substring(0, 11);
+    cleaned = cleaned.substring(0, 12);
 
     if (cleaned.length > 0) {
         formatted += '(' + cleaned.substring(0, 2);
@@ -52,7 +52,7 @@ window.checkPasswordMatch = function() {
 
 function validate_phone(phone) {
     const digits = phone.replace(/\D/g, ''); 
-    if (digits.length != 11) {
+    if (digits.length == 10) {
         return false;
     }
     return true;
@@ -78,6 +78,7 @@ window.validateEmailFormat = function() {
     }
 };
 
+
 function displayLoginError(message) {
     const errorDiv = document.getElementById('loginError');
     if (errorDiv) {
@@ -98,6 +99,10 @@ function displayRegisterError(message) {
     if (errorDiv) {
         errorDiv.textContent = message;
         errorDiv.style.display = 'block'; 
+    } else {
+        // Fallback caso a div não exista (para debug)
+        console.error("Elemento registerError não encontrado para exibir: " + message);
+        alert(message); 
     }
 }
 function clearRegisterError() {
@@ -113,7 +118,7 @@ function register(event) {
     event.preventDefault();
     clearRegisterError();
 
-    // GARANTE QUE DADOS ANTIGOS SEJAM REMOVIDOS AO CRIAR CONTA NOVA
+    // Limpa localStorage para evitar preenchimento automático com dados antigos
     localStorage.removeItem('checkout_address');
     localStorage.removeItem('checkout_payment');
 
@@ -152,14 +157,14 @@ function register(event) {
                 });
         })
         .catch((error) => {
-            let errorMessage = "Ocorreu um erro desconhecido. Tente novamente.";
-            
+            let errorMessage = "Ocorreu um erro desconhecido.";
             if (error.code === 'auth/email-already-in-use') {
                 errorMessage = 'Este e-mail já está em uso.';
             } else if (error.code === 'auth/weak-password') {
-                errorMessage = 'A senha é muito fraca. Ela deve ter pelo menos 6 caracteres.';
+                errorMessage = 'A senha é muito fraca.';
+            } else {
+                errorMessage = error.message;
             }
-            
             displayRegisterError(errorMessage);
         });
 }
@@ -172,7 +177,7 @@ function login(event) {
     const password = document.getElementById("password").value;
 
     if (!validate_email(email) || !validate_password(password)) {
-        displayLoginError("Erro: O formato do e-mail ou senha está incorreto. Verifique as regras de validação.");
+        displayLoginError("Erro: O formato do e-mail ou senha está incorreto.");
         return;
     }
 
@@ -189,7 +194,7 @@ function login(event) {
                     window.location.href = 'shop.html';
                 })
                 .catch((error) => {
-                    displayLoginError("Erro ao atualizar dados do usuário no RTDB: " + error.message);
+                    displayLoginError("Erro ao atualizar dados: " + error.message);
                 });
         })
         .catch((error) => {
@@ -205,12 +210,10 @@ function login(event) {
         });
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById("registerForm");
     if (registerForm) {
-        // Limpa dados antigos se o usuário apenas abrir a página de cadastro
-        localStorage.removeItem('checkout_address');
-        localStorage.removeItem('checkout_payment');
         registerForm.addEventListener("submit", register);
     }
 

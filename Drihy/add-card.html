@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/profile.css">
-    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="css/add-card.css">
+    <title>Adicionar Cartão</title>
 </head>
 <body>
     <header>
@@ -38,32 +38,50 @@
     </header>
 
     <main>
-        <div class="profile-container">
-            <h1>Meu Perfil</h1>
+        <div class="card-container">
+            <h1>Adicionar Cartão</h1>
             
-            <div class="profile-info">
-                <label for="displayEmail">E-mail</label>
-                <input type="text" id="displayEmail" disabled value="Carregando..." />
+            <form id="cardForm">
+                <input 
+                    type="text" 
+                    id="cardNumber" 
+                    placeholder="Número do Cartão" 
+                    maxlength="19" 
+                    required
+                />
+                
+                <input 
+                    type="text" 
+                    id="cardName" 
+                    placeholder="Nome impresso no cartão" 
+                    required
+                />
 
-                <label for="displayPhone">Telefone</label>
-                <input type="text" id="displayPhone" disabled value="Carregando..." />
+                <div class="field-group">
+                    <input 
+                        type="text" 
+                        id="cardExpiry" 
+                        placeholder="MM/AA" 
+                        maxlength="5" 
+                        class="half-width" 
+                        required
+                    />
+                    <input 
+                        type="text" 
+                        id="cardCvv" 
+                        placeholder="CVV" 
+                        maxlength="3" 
+                        class="half-width" 
+                        required
+                    />
+                </div>
 
-                <label for="displayAddress">Endereço de Entrega (Último utilizado)</label>
-                <textarea id="displayAddress" disabled rows="3">Nenhum endereço salvo</textarea>
-                <button id="editAddressBtn" class="small-action-btn">Alterar / Adicionar Endereço</button>
-
-                <label for="displayPayment">Cartão Salvo</label>
-                <input type="text" id="displayPayment" disabled value="Nenhum cartão salvo" />
-                <button id="addCardBtn" class="small-action-btn">Adicionar / Alterar Cartão</button>
-            </div>
-
-            <div class="profile-actions">
-                <button id="myOrdersBtn">Meus Pedidos</button>
-                <button id="logoutBtn" class="logout-button">Sair da Conta</button>
-            </div>
+                <input type="submit" value="Salvar Cartão" id="saveCardButton" />
+                <button type="button" id="cancelButton" class="cancel-button">Cancelar</button>
+            </form>
         </div>
     </main>
 
-    <script type="module" src="./js/profile.js"></script>
+    <script type="module" src="./js/add-card.js"></script>
 </body>
 </html>

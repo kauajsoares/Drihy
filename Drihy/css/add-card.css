@@ -8,7 +8,7 @@ main {
     min-height: 100vh;
 }
 
-.checkout-container {
+.card-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,53 +20,40 @@ main {
 h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 30px;
     color: #000;
     text-align: center;
 }
 
-.error-message {
-    color: #fff;
-    background-color: #dc3545;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-size: 14px;
-    width: 100%;
-    display: none; 
-}
-
-#addressForm {
+#cardForm {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 320px;
     gap: 10px;
 }
 
-#addressForm input[type="text"],
-#addressForm input[type="tel"] {
-    background-color: #fff;
+#cardForm input[type="text"] {
+    background-color: white;
     height: 35px;
+    margin-top: 10px;
     padding: 10px;
     font-size: 13px;
-    width: 100%;
+    width: 100%; 
     color: #c4c4c4;
-    border: 0;
     box-shadow: 1px 1px 1px 1px #c4c4c4;
+    border: 0;
     box-sizing: border-box;
 }
 
-#addressForm input[type="text"]::placeholder,
-#addressForm input[type="tel"]::placeholder {
+#cardForm input[type="text"]::placeholder {
     color: #000;
 }
 
-#addressForm input[type="text"]:focus,
-#addressForm input[type="tel"]:focus {
+#cardForm input[type="text"]:focus {
     outline: 0;
-    border: 1px solid var(--border-primary, #000);
+    border: 1px solid var(--border-primary);
 }
 
 .field-group {
@@ -80,21 +67,21 @@ h1 {
 }
 
 input[type="submit"] {
-    width: 100%;
-    margin-top: 20px;
+    width: 320px;
+    margin-top: 10px;
     height: 40px;
     border: 0;
     background-color: #000;
     color: white;
     font-size: 14px;
+    margin-bottom: 10px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
 }
 
 .cancel-button {
-    width: 100%;
-    margin-top: 10px;
+    width: 320px;
     height: 40px;
     border: 1px solid #000;
     background-color: #fff;
@@ -110,14 +97,12 @@ input[type="submit"] {
 }
 
 @media only screen and (max-width: 450px) {
-    .checkout-container, #addressForm {
+    .card-container, #cardForm {
         max-width: 90%;
         width: 90%;
     }
-    .field-group {
-        flex-direction: column;
-    }
-    .field-group .half-width {
-        width: 100%; 
+    
+    input[type="submit"], .cancel-button {
+        width: 100%;
     }
 }

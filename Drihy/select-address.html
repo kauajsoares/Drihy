@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,500;0,700;1,100;1,200;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/profile.css">
-    <title>Meu Perfil</title>
+    <link rel="stylesheet" href="css/select-address.css"> 
+    <title>Selecionar Endereço</title>
 </head>
 <body>
     <header>
@@ -34,36 +34,37 @@
                 <div class="line3"></div>
             </div>
         </div>
-        <script src="/js/mobile-navbar.js"></script>
+        <script src="./js/mobile-navbar.js"></script>
     </header>
 
     <main>
-        <div class="profile-container">
-            <h1>Meu Perfil</h1>
+        <div class="checkout-container">
+            <h1>Endereço de Entrega</h1>
             
-            <div class="profile-info">
-                <label for="displayEmail">E-mail</label>
-                <input type="text" id="displayEmail" disabled value="Carregando..." />
+            <div id="loadingMessage">Carregando informações...</div>
 
-                <label for="displayPhone">Telefone</label>
-                <input type="text" id="displayPhone" disabled value="Carregando..." />
-
-                <label for="displayAddress">Endereço de Entrega (Último utilizado)</label>
-                <textarea id="displayAddress" disabled rows="3">Nenhum endereço salvo</textarea>
-                <button id="editAddressBtn" class="small-action-btn">Alterar / Adicionar Endereço</button>
-
-                <label for="displayPayment">Cartão Salvo</label>
-                <input type="text" id="displayPayment" disabled value="Nenhum cartão salvo" />
-                <button id="addCardBtn" class="small-action-btn">Adicionar / Alterar Cartão</button>
+            <div id="addressCard" class="address-card" style="display: none;">
+                <h3>Endereço Principal</h3>
+                <p id="addrStreet">Rua...</p>
+                <p id="addrCity">Cidade - UF</p>
+                <p id="addrCep">CEP: 00000-000</p>
             </div>
 
-            <div class="profile-actions">
-                <button id="myOrdersBtn">Meus Pedidos</button>
-                <button id="logoutBtn" class="logout-button">Sair da Conta</button>
+            <div id="noAddressMessage" class="no-address" style="display: none;">
+                <p>Você ainda não possui um endereço cadastrado para entrega.</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="btnContinue" class="primary-btn" style="display: none;">Ir para Pagamento</button>
+                <button id="btnAddEdit" class="secondary-btn">Adicionar / Alterar Endereço</button>
+            </div>
+
+            <div class="infobox">
+                <p>Voltar ao <a href="cart.html">Carrinho</a></p>
             </div>
         </div>
     </main>
 
-    <script type="module" src="./js/profile.js"></script>
+    <script type="module" src="./js/select-address.js"></script>
 </body>
 </html>

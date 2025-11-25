@@ -9,7 +9,6 @@ form {
     gap: 10px;
 }
 
-/* CORREÇÃO: input[type="text"] adicionado para estilizar o campo de e-mail */
 input[type="password"],
 input[type="text"] {
     background-color: white;
@@ -111,10 +110,9 @@ input[type="submit"] {
         width: 250px;
     }
 
-    /* CORREÇÃO: input[type="text"] adicionado para responsividade */
     input[type="password"],
     input[type="text"], 
-    input[id="inputs"] { /* input[id="inputs"] mantido, embora não pareça estar no seu HTML */
+    input[id="inputs"] { 
         width: 250px;
     }
 

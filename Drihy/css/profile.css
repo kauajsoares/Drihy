@@ -24,7 +24,6 @@ h1 {
     margin-bottom: 40px;
     color: #000;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .profile-info {
@@ -53,29 +52,31 @@ h1 {
     cursor: not-allowed;
     font-family: 'Poppins', sans-serif;
     resize: none;
+    box-sizing: border-box;
 }
 
 .profile-info input {
     height: 40px;
 }
 
-/* Estilo para o botão pequeno de editar endereço */
 .small-action-btn {
     width: auto;
     height: 30px;
     font-size: 12px;
-    background-color: transparent;
-    color: #555;
-    border: 1px solid #ccc;
-    margin-top: -10px; /* Aproxima do textarea */
-    align-self: flex-end; /* Alinha à direita */
-    padding: 0 10px;
+    background-color: #fff;
+    color: #000;
+    border: 0;
+    box-shadow: 1px 1px 1px 1px #c4c4c4;
+    margin-top: -10px;
+    align-self: flex-end;
+    padding: 0 15px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
 }
 
 .small-action-btn:hover {
-    background-color: #f0f0f0;
-    color: #000;
-    border-color: #000;
+    background-color: #f9f9f9;
 }
 
 .profile-actions {

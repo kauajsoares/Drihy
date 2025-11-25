@@ -68,7 +68,17 @@ function addToCart(product) {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Produto adicionado ao carrinho!');
+    
+    // Atualiza o contador do carrinho imediatamente disparando o evento 'storage'
+    window.dispatchEvent(new Event('storage'));
+    
+    // Opcional: Feedback visual no botão em vez de alert
+    const addBtn = document.getElementById('addToCartButton');
+    const originalText = addBtn.value;
+    addBtn.value = "Adicionado!";
+    setTimeout(() => {
+        addBtn.value = originalText;
+    }, 1500);
 }
 
 fetchProductData();

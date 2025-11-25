@@ -19,7 +19,12 @@
             <ul class="nav-list">
                 <li><a href="shop.html">shop</a></li>
                 <li><a href="contact.html">contact</a></li>
-                <li><a href="cart.html">cart</a></li>
+                <li>
+                    <a href="cart.html" class="cart-link">
+                        cart
+                        <span class="cart-badge"></span>
+                    </a>
+                </li>
                 <li><a href="profile.html">perfil</a></li>
                 <li><a href="login.html">login</a></li>
             </ul>
@@ -29,7 +34,7 @@
                 <div class="line3"></div>
             </div>
         </div>
-        <script src="/js/mobile-navbar.js"></script>
+        <script src="./js/mobile-navbar.js"></script>
     </header>
     <main>
         <div class="checkout-container">
@@ -38,25 +43,25 @@
 
             <form id="addressForm">
                 <input 
-                    placeholder="CEP (00000-000)" 
+                    placeholder="CEP (00000-000)*" 
                     type="tel" 
                     id="cep" 
                     required 
                     maxlength="9"
                 />
                 
-                <input placeholder="Rua / Avenida" type="text" id="rua" required />
+                <input placeholder="Rua / Avenida*" type="text" id="rua" required />
 
                 <div class="field-group">
                     <input placeholder="Número" type="text" id="numero" required class="half-width" />
-                    <input placeholder="Complemento (Opcional)" type="text" id="complemento" class="half-width" />
+                    <input placeholder="Complemento" type="text" id="complemento" class="half-width" />
                 </div>
                 
-                <input placeholder="Bairro" type="text" id="bairro" required />
+                <input placeholder="Bairro*" type="text" id="bairro" required />
 
                 <div class="field-group">
-                    <input placeholder="Cidade" type="text" id="cidade" required class="half-width" />
-                    <input placeholder="Estado (Ex: SP)" type="text" id="estado" required maxlength="2" class="half-width" />
+                    <input placeholder="Cidade*" type="text" id="cidade" required class="half-width" />
+                    <input placeholder="Estado (Ex: SP)*" type="text" id="estado" required maxlength="2" class="half-width" />
                 </div>
 
                 <input type="submit" value="Salvar Endereço" id="saveButton" />
