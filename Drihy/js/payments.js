@@ -154,12 +154,10 @@ paymentForm.addEventListener('submit', (e) => {
         })
         .then((response) => {
             console.log('SUCESSO! Email enviado.', response.status, response.text);
-            alert("Email enviado com sucesso! Verifique sua caixa de entrada."); // Alert para pausar e você ver
             finishOrder();
         })
         .catch((error) => {
             console.error('FALHA CRÍTICA:', error);
-            alert("Erro ao enviar email (veja o console), mas o pedido foi salvo."); // Alert para pausar
             finishOrder(); 
         });
 });

@@ -1,9 +1,24 @@
 function loadCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cartItems');
+    const checkoutButton = document.getElementById('checkoutButton');
     cartItemsContainer.innerHTML = '';
 
     let total = 0;
+
+    // LÓGICA PARA DESABILITAR O BOTÃO SE O CARRINHO ESTIVER VAZIO
+    if (cart.length === 0) {
+        checkoutButton.classList.add('disabled'); // Adiciona classe CSS para estilo visual
+        checkoutButton.style.pointerEvents = 'none'; // Desabilita o clique
+        checkoutButton.style.opacity = '0.5'; // Deixa o botão "apagado"
+        
+        // Opcional: Mensagem de carrinho vazio na tabela
+        cartItemsContainer.innerHTML = '<tr><td colspan="7">Seu carrinho está vazio.</td></tr>';
+    } else {
+        checkoutButton.classList.remove('disabled');
+        checkoutButton.style.pointerEvents = 'auto';
+        checkoutButton.style.opacity = '1';
+    }
 
     cart.forEach((item, index) => {
         const priceCleaned = item.productPrice.replace(/[R$\s]/g, '').replace(',', '.').trim();
@@ -65,7 +80,13 @@ function removeFromCart(index) {
     window.dispatchEvent(new Event('storage'));
 }
 
+// Prevenção extra no clique (caso o usuário tente forçar ou remover a classe via inspeção)
 document.getElementById('checkoutButton').addEventListener('click', (e) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        e.preventDefault();
+        alert("Seu carrinho está vazio!");
+    }
 });
 
 loadCart();
