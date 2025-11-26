@@ -31,13 +31,12 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 320px;
-    gap: 10px;
+    gap: 15px;
 }
 
 #cardForm input[type="text"] {
     background-color: white;
-    height: 35px;
-    margin-top: 10px;
+    height: 40px;
     padding: 10px;
     font-size: 13px;
     width: 100%; 
@@ -53,7 +52,48 @@ h1 {
 
 #cardForm input[type="text"]:focus {
     outline: 0;
-    border: 1px solid var(--border-primary);
+    border: 1px solid var(--border-primary, #000);
+}
+
+.card-type-selector {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+    user-select: none;
+}
+
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+.radio-container input:checked ~ .checkmark {
+    background-color: #000;
 }
 
 .field-group {

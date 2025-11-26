@@ -1,5 +1,5 @@
 import { auth, database } from "./firebase-config.js";
-import { ref, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { ref, push } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const cardNumber = document.getElementById('cardNumber');
@@ -43,14 +43,17 @@ cardForm.addEventListener('submit', (e) => {
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
+            const cardType = document.querySelector('input[name="cardType"]:checked').value;
+
             const cardData = {
                 number: cardNumber.value,
                 name: cardName.value,
+                type: cardType,
                 expiry: cardExpiry.value,
                 cvv: cardCvv.value
             };
 
-            update(ref(database, "users/" + user.uid + "/card"), cardData)
+            push(ref(database, "users/" + user.uid + "/cards"), cardData)
                 .then(() => {
                     window.location.href = 'profile.html';
                 })

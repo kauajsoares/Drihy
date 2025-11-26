@@ -38,13 +38,13 @@ h1 {
     display: flex;
     flex-direction: column;
     width: 320px;
-    gap: 25px; /* Espaçamento principal entre os grupos */
+    gap: 20px;
 }
 
 .payment-method-selector {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 10px;
 }
 
@@ -79,24 +79,68 @@ h1 {
     background-color: #000;
 }
 
-/* Seção do Cartão de Crédito */
-#creditCardSection {
+/* ESTILO PARA LISTA DE CARTÕES SALVOS */
+.saved-card-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 8px;
     display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espaçamento entre os inputs DENTRO da seção do cartão */
+    align-items: center;
 }
 
+.saved-card-item label {
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.saved-card-item input {
+    margin-right: 10px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.text-link-btn {
+    background: none;
+    border: none;
+    color: #555;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+.save-card-option {
+    font-size: 12px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+/* INPUTS PADRÃO */
 #paymentForm input[type="text"] {
     background-color: white;
     height: 40px;
     padding: 10px;
     font-size: 13px;
     width: 100%;
-    color: #c4c4c4;
+    color: #000;
     border: 0;
     box-shadow: 1px 1px 1px 1px #c4c4c4;
     box-sizing: border-box;
-    margin-bottom: 5px; /* Margem extra de segurança */
+    margin-bottom: 5px;
 }
 
 #paymentForm input[type="text"]::placeholder {
@@ -113,7 +157,7 @@ h1 {
     gap: 15px;
     width: 100%;
 }
- 
+
 .field-group .half-width {
     width: 50%;
 }
@@ -123,7 +167,6 @@ h1 {
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     padding: 20px;
-    /* border: 1px dashed #c4c4c4; REMOVIDO */
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -160,23 +203,21 @@ h1 {
 .qr-image {
     width: 150px;
     height: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .copy-paste-label {
     font-size: 12px;
     font-weight: 600;
     align-self: flex-start;
+    margin-bottom: -10px;
+    z-index: 1;
 }
 
 .copy-paste-input {
-    background-color: #f9f9f9 !important;
-    border: 1px solid #ddd !important;
-    color: #666 !important;
-    font-family: monospace;
-    font-size: 11px !important;
+    background-color: #f0f0f0 !important;
+    color: #555 !important;
     cursor: text;
-    box-shadow: none !important;
 }
 
 .pix-timer {
@@ -194,7 +235,7 @@ h1 {
 
 input[type="submit"] {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 25px;
     height: 45px;
     border: 0;
     background-color: #000;

@@ -34,7 +34,7 @@
                 <div class="line3"></div>
             </div>
         </div>
-        <script src="/js/mobile-navbar.js"></script>
+        <script type="module" src="./js/mobile-navbar.js"></script>
     </header>
 
     <main>
@@ -52,9 +52,11 @@
                 <textarea id="displayAddress" disabled rows="3">Nenhum endereço salvo</textarea>
                 <button id="editAddressBtn" class="small-action-btn">Alterar / Adicionar Endereço</button>
 
-                <label for="displayPayment">Cartão Salvo</label>
-                <input type="text" id="displayPayment" disabled value="Nenhum cartão salvo" />
-                <button id="addCardBtn" class="small-action-btn">Adicionar / Alterar Cartão</button>
+                <label>Meus Cartões</label>
+                <div id="cardsListContainer" class="cards-list">
+                    <input type="text" disabled value="Carregando..." />
+                </div>
+                <button id="addCardBtn" class="small-action-btn">Adicionar Novo Cartão</button>
             </div>
 
             <div class="profile-actions">
@@ -63,6 +65,34 @@
             </div>
         </div>
     </main>
+
+    <div id="cardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div class="credit-card-ui">
+                <div class="card-chip"></div>
+                <div class="card-header-info">
+                    <div class="card-brand">DRIHY CARD</div>
+                    <div id="modalCardType" class="card-type">CRÉDITO</div>
+                </div>
+
+                <div class="card-number" id="modalCardNumber">**** **** **** 0000</div>
+                <div class="card-details">
+                    <div class="card-holder">
+                        <span class="label">Titular</span>
+                        <span id="modalCardName">NOME DO TITULAR</span>
+                    </div>
+                    <div class="card-expiry">
+                        <span class="label">Validade</span>
+                        <span id="modalCardExpiry">MM/AA</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="deleteCardBtn" class="delete-btn">Remover Cartão</button>
+        </div>
+    </div>
 
     <script type="module" src="./js/profile.js"></script>
 </body>

@@ -1,3 +1,9 @@
+import { auth, database } from "./firebase-config.js";
+import { ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// REMOVIDO: O código do emailjs.init() não deve estar aqui.
+
 async function fetchProductData() {
     try {
         const params = new URLSearchParams(window.location.search);
@@ -40,12 +46,11 @@ async function fetchProductData() {
             document.getElementById('productPrice').textContent = product.productPrice;
 
             document.getElementById('addToCartButton').addEventListener('click', () => {
-                addToCart(product);
+                addToCart(product, false);
             });
 
             document.getElementById('buyNowButton').addEventListener('click', () => {
-                addToCart(product);
-                window.location.href = 'cart.html';
+                addToCart(product, true);
             });
         } else {
             console.error('Product not found');
@@ -55,30 +60,41 @@ async function fetchProductData() {
     }
 }
 
-function addToCart(product) {
-    const size = document.getElementById('sizeselect').value;
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartItem = { ...product, size, quantity: 1 };
+function addToCart(product, redirect) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const size = document.getElementById('sizeselect').value;
+            const cartRef = ref(database, `users/${user.uid}/cart`);
 
-    const existingItemIndex = cart.findIndex(item => item.slug === product.slug && item.size === size);
-    if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        cart.push(cartItem);
-    }
+            get(cartRef).then((snapshot) => {
+                let cart = snapshot.exists() ? snapshot.val() : [];
+                if (!Array.isArray(cart)) cart = [];
+                
+                const existingItemIndex = cart.findIndex(item => item.slug === product.slug && item.size === size);
+                
+                if (existingItemIndex > -1) {
+                    cart[existingItemIndex].quantity += 1;
+                } else {
+                    const cartItem = { ...product, size, quantity: 1 };
+                    cart.push(cartItem);
+                }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    // Atualiza o contador do carrinho imediatamente disparando o evento 'storage'
-    window.dispatchEvent(new Event('storage'));
-    
-    // Opcional: Feedback visual no botão em vez de alert
-    const addBtn = document.getElementById('addToCartButton');
-    const originalText = addBtn.value;
-    addBtn.value = "Adicionado!";
-    setTimeout(() => {
-        addBtn.value = originalText;
-    }, 1500);
+                set(cartRef, cart).then(() => {
+                    const addBtn = document.getElementById('addToCartButton');
+                    const originalText = addBtn.value;
+                    addBtn.value = "Adicionado!";
+                    setTimeout(() => { addBtn.value = originalText; }, 1500);
+
+                    if (redirect) {
+                        window.location.href = 'cart.html';
+                    }
+                });
+            });
+        } else {
+            alert("Faça login para adicionar produtos ao carrinho.");
+            window.location.href = "login.html";
+        }
+    });
 }
 
 fetchProductData();

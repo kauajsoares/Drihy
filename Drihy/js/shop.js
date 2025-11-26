@@ -8,8 +8,8 @@ async function fetchData() {
                 Authorization: "Bearer b5c82608889cf13b3dbfb84fd48019",
             },
             body: JSON.stringify({
-                query: `query{
-                    allProducts{
+                query: `query {
+                    allProducts {
                         productImage {
                             responsiveImage(imgixParams: {auto: [compress, format]}) {
                                 src
@@ -33,6 +33,11 @@ async function fetchData() {
 
 function renderProducts(products) {
     const shopitems = document.getElementById("shopitems");
+    
+    if (!shopitems) return;
+
+    shopitems.innerHTML = "";
+
     products.forEach((product) => {
         const listItem = document.createElement("li");
         listItem.innerHTML = `
@@ -46,4 +51,6 @@ function renderProducts(products) {
     });
 }
 
-fetchData();
+document.addEventListener('DOMContentLoaded', () => {
+    fetchData();
+});

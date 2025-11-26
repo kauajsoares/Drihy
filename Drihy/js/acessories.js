@@ -8,8 +8,9 @@ async function fetchData() {
                 Authorization: "Bearer b5c82608889cf13b3dbfb84fd48019",
             },
             body: JSON.stringify({
+                // CORREÇÃO AQUI: Mudado de 'pants' para 'acessories'
                 query: `query{
-                    allProducts(filter: { productType: { eq: "pants" } }) {
+                    allProducts(filter: { productType: { eq: "acessories" } }) {
                         productImage {
                             responsiveImage(imgixParams: {auto: [compress, format]}) {
                                 src

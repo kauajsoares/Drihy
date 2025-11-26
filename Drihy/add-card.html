@@ -19,12 +19,7 @@
             <ul class="nav-list">
                 <li><a href="shop.html">shop</a></li>
                 <li><a href="contact.html">contact</a></li>
-                <li>
-                    <a href="cart.html" class="cart-link">
-                        cart
-                        <span class="cart-badge"></span>
-                    </a>
-                </li>
+                <li><a href="cart.html">cart</a></li>
                 <li><a href="profile.html">perfil</a></li>
                 <li><a href="login.html">login</a></li>
             </ul>
@@ -74,6 +69,19 @@
                         class="half-width" 
                         required
                     />
+                </div>
+
+                <div class="card-type-selector">
+                    <label class="radio-container">
+                        <input type="radio" name="cardType" value="Crédito" checked>
+                        <span class="checkmark"></span>
+                        Crédito
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="cardType" value="Débito">
+                        <span class="checkmark"></span>
+                        Débito
+                    </label>
                 </div>
 
                 <input type="submit" value="Salvar Cartão" id="saveCardButton" />

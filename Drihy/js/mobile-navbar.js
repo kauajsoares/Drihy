@@ -1,3 +1,7 @@
+import { auth, database } from "./firebase-config.js";
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 class MobileNavbar {
   constructor(mobileMenu, navList, navLinks) {
     this.mobileMenu = document.querySelector(mobileMenu);
@@ -43,33 +47,40 @@ const mobileNavbar = new MobileNavbar(
 );
 mobileNavbar.init();
 
-// LÓGICA DO CARRINHO (NOVA)
-function updateCartBadge() {
-    // Pega o carrinho do localStorage ou cria array vazio
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-    // Soma a quantidade de todos os itens
-    let totalQuantity = 0;
-    cart.forEach(item => {
-        // Se o item tiver propriedade quantity usa ela, senão assume 1
-        totalQuantity += parseInt(item.quantity || 1);
-    });
-
-    // Atualiza o badge no HTML
+onAuthStateChanged(auth, (user) => {
     const badge = document.querySelector('.cart-badge');
     
-    if (badge) {
-        if (totalQuantity > 0) {
-            badge.textContent = totalQuantity;
-            badge.style.display = 'flex'; // Mostra se tiver itens
-        } else {
-            badge.style.display = 'none'; // Esconde se estiver vazio
-        }
+    if (!badge) return;
+
+    if (user) {
+        const cartRef = ref(database, `users/${user.uid}/cart`);
+        
+        onValue(cartRef, (snapshot) => {
+            const cart = snapshot.val() || [];
+            let totalQuantity = 0;
+            
+            if (Array.isArray(cart)) {
+                cart.forEach(item => {
+                    if (item) {
+                        totalQuantity += parseInt(item.quantity || 1);
+                    }
+                });
+            } else if (typeof cart === 'object') {
+                 Object.values(cart).forEach(item => {
+                    if (item) {
+                        totalQuantity += parseInt(item.quantity || 1);
+                    }
+                 });
+            }
+
+            if (totalQuantity > 0) {
+                badge.textContent = totalQuantity;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        });
+    } else {
+        badge.style.display = 'none';
     }
-}
-
-// Executa assim que a página carrega
-document.addEventListener('DOMContentLoaded', updateCartBadge);
-
-// Escuta mudanças no localStorage (para atualizar em outras abas em tempo real)
-window.addEventListener('storage', updateCartBadge);
+});
