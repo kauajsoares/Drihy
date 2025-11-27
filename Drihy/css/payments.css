@@ -26,14 +26,107 @@ h1 {
     text-align: center;
 }
 
-.summary-box {
+/* ESTILOS DE FRETE */
+#shippingSection {
+    width: 320px;
     margin-bottom: 20px;
+}
+
+.shipping-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.shipping-option:hover {
+    border-color: #000;
+}
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 10px;
+}
+
+.radio-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark-round {
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: block;
+}
+
+.radio-wrapper input:checked ~ .checkmark-round {
+    background-color: #000;
+}
+
+.shipping-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.shipping-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+.shipping-date {
+    font-size: 11px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.shipping-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* RESUMO DE VALORES */
+.summary-box {
+    width: 320px;
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
     font-family: 'Poppins', sans-serif;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.summary-row.total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
     font-size: 18px;
     font-weight: 700;
     color: #000;
 }
 
+/* Restante do CSS (igual ao anterior) */
 #paymentForm {
     display: flex;
     flex-direction: column;
@@ -79,7 +172,6 @@ h1 {
     background-color: #000;
 }
 
-/* ESTILO PARA LISTA DE CARTÕES SALVOS */
 .saved-card-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -89,23 +181,12 @@ h1 {
     align-items: center;
 }
 
-.saved-card-item label {
-    cursor: pointer;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.saved-card-item input {
-    margin-right: 10px;
-}
-
 .section-title {
     font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-weight: 700;
+    margin-bottom: 15px;
     margin-top: 0;
+    color: #333;
 }
 
 .text-link-btn {
@@ -118,6 +199,11 @@ h1 {
     padding: 0;
     margin-top: 5px;
     align-self: flex-start;
+    font-weight: 600;
+}
+
+.text-link-btn:hover {
+    color: #000;
 }
 
 .save-card-option {
@@ -129,7 +215,6 @@ h1 {
     margin-top: 5px;
 }
 
-/* INPUTS PADRÃO */
 #paymentForm input[type="text"] {
     background-color: white;
     height: 40px;
@@ -144,7 +229,7 @@ h1 {
 }
 
 #paymentForm input[type="text"]::placeholder {
-    color: #000;
+    color: #999;
 }
 
 #paymentForm input[type="text"]:focus {
@@ -160,6 +245,15 @@ h1 {
 
 .field-group .half-width {
     width: 50%;
+}
+
+.card-type-selector {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 #pixSection {
@@ -203,7 +297,7 @@ h1 {
 .qr-image {
     width: 150px;
     height: 150px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .copy-paste-label {
@@ -218,6 +312,7 @@ h1 {
     background-color: #f0f0f0 !important;
     color: #555 !important;
     cursor: text;
+    box-shadow: none !important;
 }
 
 .pix-timer {
@@ -262,7 +357,7 @@ input[type="submit"]:hover {
 }
 
 @media only screen and (max-width: 450px) {
-    .checkout-container, #paymentForm {
+    .checkout-container, #paymentForm, #shippingSection, .summary-box {
         max-width: 90%;
         width: 90%;
     }

@@ -30,15 +30,54 @@
                 <div class="line3"></div>
             </div>
         </div>
-        <script type="module" ="./js/mobile-navbar.js"></script>
+        <script type="module" src="./js/mobile-navbar.js"></script>
     </header>
 
     <main>
         <div class="checkout-container">
             <h1>Pagamento</h1>
             
+            <div id="shippingSection">
+                <p class="section-title">Escolha o Frete:</p>
+                
+                <label class="shipping-option">
+                    <div class="radio-wrapper">
+                        <input type="radio" name="shippingMethod" value="economic" checked data-price="15.00">
+                        <span class="checkmark-round"></span>
+                    </div>
+                    <div class="shipping-info">
+                        <span class="shipping-name">Econômico (9 dias úteis)</span>
+                        <span class="shipping-date" id="dateEconomic">Chega dia --/--</span>
+                    </div>
+                    <span class="shipping-price">R$ 15,00</span>
+                </label>
+
+                <label class="shipping-option">
+                    <div class="radio-wrapper">
+                        <input type="radio" name="shippingMethod" value="express" data-price="35.00">
+                        <span class="checkmark-round"></span>
+                    </div>
+                    <div class="shipping-info">
+                        <span class="shipping-name">Express (4 dias corridos)</span>
+                        <span class="shipping-date" id="dateExpress">Chega dia --/--</span>
+                    </div>
+                    <span class="shipping-price">R$ 35,00</span>
+                </label>
+            </div>
+
             <div class="summary-box">
-                <p>Total a pagar: <span id="totalAmount">R$ 0,00</span></p>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotalAmount">R$ 0,00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Frete:</span>
+                    <span id="shippingAmount">R$ 15,00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="totalAmount">R$ 0,00</span>
+                </div>
             </div>
 
             <form id="paymentForm">
@@ -59,17 +98,32 @@
                     
                     <div id="savedCardsSection" style="display: none;">
                         <p class="section-title">Seus Cartões Salvos:</p>
-                        <div id="savedCardsContainer">
-                            </div>
+                        <div id="savedCardsContainer"></div>
                         <button type="button" id="useNewCardBtn" class="text-link-btn">+ Usar novo cartão</button>
                     </div>
 
-                    <div id="newCardSection" style="display: none;"> <p class="section-title">Novo Cartão</p>
+                    <div id="newCardSection" style="display: none;">
+                        <p class="section-title">Novo Cartão</p>
+                        
                         <input type="text" id="cardNumber" placeholder="Número do Cartão" maxlength="19" />
                         <input type="text" id="cardName" placeholder="Nome impresso no cartão" />
+
                         <div class="field-group">
                             <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" class="half-width" />
                             <input type="text" id="cardCvv" placeholder="CVV" maxlength="3" class="half-width" />
+                        </div>
+
+                        <div class="card-type-selector">
+                            <label class="radio-container">
+                                <input type="radio" name="newCardType" value="Crédito" checked>
+                                <span class="checkmark"></span>
+                                Crédito
+                            </label>
+                            <label class="radio-container">
+                                <input type="radio" name="newCardType" value="Débito">
+                                <span class="checkmark"></span>
+                                Débito
+                            </label>
                         </div>
                         
                         <label class="save-card-option">
@@ -78,6 +132,12 @@
 
                         <button type="button" id="cancelNewCardBtn" class="text-link-btn" style="display: none;">Cancelar e usar cartão salvo</button>
                     </div>
+
+                    <div id="installmentsContainer" style="display: none; margin-top: 15px;">
+                        <label for="installmentsSelect" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 5px;">Opções de Parcelamento:</label>
+                        <select id="installmentsSelect" style="width: 100%; height: 40px; padding: 5px;"></select>
+                    </div>
+
                 </div>
 
                 <div id="pixSection" style="display: none;">

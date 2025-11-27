@@ -42,7 +42,10 @@ function renderOrders(ordersObj) {
         orderCard.className = 'order-card';
 
         let itemsHtml = '';
-        order.items.forEach(item => {
+        const items = Array.isArray(order.items) ? order.items : Object.values(order.items || {});
+
+        items.forEach(item => {
+            if (!item) return;
             const priceCleaned = item.productPrice.replace(/[R$\s]/g, '').replace(',', '.').trim();
             const itemPrice = parseFloat(priceCleaned).toFixed(2).replace('.', ',');
             
@@ -57,19 +60,32 @@ function renderOrders(ordersObj) {
             `;
         });
 
-        const paymentLabel = order.paymentMethod === 'credit_card' ? 'Cartão de Crédito' : 'Pix';
+        const paymentLabel = order.paymentMethod;
+        
+        // NOVA LÓGICA: Recupera e formata o frete
+        const shippingName = order.shippingMethod || 'Padrão';
+        const shippingVal = order.shipping ? parseFloat(order.shipping).toFixed(2).replace('.', ',') : '0,00';
 
         orderCard.innerHTML = `
             <div class="order-header">
                 <span class="order-date">${date} às ${time}</span>
                 <span class="order-status">${order.status}</span>
             </div>
+            
             <div class="order-items">
                 ${itemsHtml}
             </div>
+            
             <div class="order-footer">
-                <span class="payment-method">Pagamento: ${paymentLabel}</span>
-                <span class="order-total">Total: R$ ${order.total.toFixed(2).replace('.', ',')}</span>
+                <div class="order-meta-info">
+                    <span class="info-row"><strong>Pagamento:</strong> ${paymentLabel}</span>
+                    <span class="info-row"><strong>Frete:</strong> ${shippingName} (R$ ${shippingVal})</span>
+                </div>
+                
+                <div class="order-total-box">
+                    <span class="order-total-label">Total</span>
+                    <span class="order-total-value">R$ ${order.total.toFixed(2).replace('.', ',')}</span>
+                </div>
             </div>
         `;
 

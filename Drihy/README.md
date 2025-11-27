@@ -115,12 +115,12 @@ npm test -- --coverage
 
 ```
 Drihy/
-├── assets/              (Suas imagens e logo)
-├── css/                 (Seus arquivos .css)
+├── assets/              (imagens e logo)
+├── css/                 (arquivos .css)
 │   ├── header.css
 │   ├── cart.css
 │   └── ...
-├── js/                  (Seus arquivos .js e configs)
+├── js/                  (arquivos .js e configs)
 │   ├── firebase-config.js
 │   ├── mobile-navbar.js
 │   ├── cart.js

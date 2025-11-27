@@ -118,7 +118,6 @@ function register(event) {
     event.preventDefault();
     clearRegisterError();
 
-    // Limpa localStorage para evitar preenchimento automático com dados antigos
     localStorage.removeItem('checkout_address');
     localStorage.removeItem('checkout_payment');
 
