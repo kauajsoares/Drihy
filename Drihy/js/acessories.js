@@ -47,4 +47,4 @@ function renderProducts(products) {
     });
 }
 
-fetchData();
+fetchData(); 

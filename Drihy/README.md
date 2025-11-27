@@ -10,7 +10,6 @@ O projeto foi construído seguindo princípios modernos de organização, testes
 Criar um e‑commerce funcional que permita:
 
 - Exibir produtos
-- Filtrar e pesquisar itens
 - Criar e gerenciar carrinho
 - Autenticar usuários
 - Registrar compras
@@ -23,13 +22,17 @@ Criar um e‑commerce funcional que permita:
 O projeto utiliza uma arquitetura limpa dividida em camadas:
 
 ```
-/src
- ├── api/          → comunicação com APIs
- ├── components/   → componentes reutilizáveis (UI)
- ├── pages/        → páginas principais da aplicação
- ├── services/     → regras de negócio
- ├── utils/        → funções auxiliares
- ├── tests/        → testes unitários e de integração
+/Drihy
+ ├── assets/         -> imagens e logo do site
+ ├── css/            -> arquivos de estilo
+ ├── js/             -> lógica da aplicação e configs do Firebase
+ ├── cart.html       -> tela do carrinho de compras
+ ├── index.html      -> página inicial
+ ├── login.html      -> tela de login
+ ├── profile.html    -> tela de perfil do usuário
+ ├── shop.html       -> vitrine de produtos
+ ├── signup.html     -> tela de cadastro
+ └── ... (outros htmls)
 ```
 
 ### 🔧 Principais ferramentas
@@ -69,16 +72,16 @@ Saídas geradas:
 
 - Cadastro e login de usuários  
 - Listagem de produtos  
-- Filtros (categoria, preço, busca)  
 - Página de detalhes  
 - Carrinho completo  
-- Checkout  
+- Confirmação da Compra via Email
+- Validação
 - Responsividade  
-- Design moderno  
+- Design Minimalista  
 
 ---
 
-## 🧰 Instalação
+## 🧰 Instalação dos Testes
 
 ```
 npm install
@@ -99,37 +102,48 @@ npm test
 npm test -- --coverage
 ```
 
+## 🧰 Instalação para DEV pelo VSCode
+- Instalar a Extensão Live Server
+- Abrir o arquivo Pelo VSCode 
+- - Botão direito no Index.html
+- - Open With Live Server
+
+
 ---
 
 ## 📁 Estrutura Completa
 
 ```
 Drihy/
- ├── src/
- │   ├── api/
- │   ├── components/
- │   ├── pages/
- │   ├── services/
- │   ├── utils/
- │   └── tests/
- ├── public/
- ├── package.json
- ├── babel.config.js
- ├── jest.config.js
- └── README.md
+├── assets/              (Suas imagens e logo)
+├── css/                 (Seus arquivos .css)
+│   ├── header.css
+│   ├── cart.css
+│   └── ...
+├── js/                  (Seus arquivos .js e configs)
+│   ├── firebase-config.js
+│   ├── mobile-navbar.js
+│   ├── cart.js
+│   └── ...
+├── .firebaserc          (Config do Firebase)
+├── firebase.json        (Config do Firebase)
+├── index.html
+├── cart.html
+├── login.html
+├── profile.html
+└── ... (outros htmls)
 ```
 
 ---
 
 ## 🔗 Repositório
 
-➡️ **GitHub:** https://github.com/SEU-USUARIO/drihy
+➡️ **GitHub:** https://github.com/kauajsoares/drihy
 
 ---
 
 ## 🏁 Conclusão
 
-O Drihy representa um e‑commerce moderno, modular e pronto para evolução.  
+O Drihy representa um e‑commerce com designe minimalista, modular e pronto para evolução.  
 Projeto documentado, testado e estruturado para apresentar ou publicar.
 
-Desenvolvido por **Luiz Felipe** 🔥
