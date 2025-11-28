@@ -1,5 +1,5 @@
 import { auth, database } from "./firebase-config.js";
-import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 class MobileNavbar {
@@ -8,7 +8,6 @@ class MobileNavbar {
     this.navList = document.querySelector(navList);
     this.navLinks = document.querySelectorAll(navLinks);
     this.activeClass = "active";
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -50,9 +49,8 @@ mobileNavbar.init();
 onAuthStateChanged(auth, (user) => {
     const badge = document.querySelector('.cart-badge');
     
-    if (!badge) return;
-
     if (user) {
+        // 1. Lógica do Badge do Carrinho
         const cartRef = ref(database, `users/${user.uid}/cart`);
         
         onValue(cartRef, (snapshot) => {
@@ -61,26 +59,44 @@ onAuthStateChanged(auth, (user) => {
             
             if (Array.isArray(cart)) {
                 cart.forEach(item => {
-                    if (item) {
-                        totalQuantity += parseInt(item.quantity || 1);
-                    }
+                    if (item) totalQuantity += parseInt(item.quantity || 1);
                 });
             } else if (typeof cart === 'object') {
                  Object.values(cart).forEach(item => {
-                    if (item) {
-                        totalQuantity += parseInt(item.quantity || 1);
-                    }
+                    if (item) totalQuantity += parseInt(item.quantity || 1);
                  });
             }
 
-            if (totalQuantity > 0) {
-                badge.textContent = totalQuantity;
-                badge.style.display = 'flex';
-            } else {
-                badge.style.display = 'none';
+            if (badge) {
+                if (totalQuantity > 0) {
+                    badge.textContent = totalQuantity;
+                    badge.style.display = 'flex';
+                } else {
+                    badge.style.display = 'none';
+                }
             }
         });
+
+        // 2. Lógica de Admin (Com redirecionamento corrigido)
+        const adminRef = ref(database, `users/${user.uid}/isAdmin`);
+        get(adminRef).then((snapshot) => {
+            if (snapshot.exists() && snapshot.val() === true) {
+                const navList = document.querySelector('.nav-list');
+                
+                if (!document.getElementById('adminLink')) {
+                    const adminLi = document.createElement('li');
+                    // CAMINHO CORRIGIDO PARA A PASTA ADMIN
+                    adminLi.innerHTML = '<a href="admin/html/dashboard.html" id="adminLink" style="color: red;">admin</a>';
+                    navList.appendChild(adminLi); 
+                }
+            }
+        });
+
     } else {
-        badge.style.display = 'none';
+        if (badge) badge.style.display = 'none';
+        const adminLink = document.getElementById('adminLink');
+        if (adminLink) {
+            adminLink.parentElement.remove();
+        }
     }
 });
