@@ -1,4 +1,4 @@
-# 🛒 Drihy — E‑commerce Moderno e Intuitivo
+# 🛒 Drihy — E‑commerce
 
 O **Drihy** é uma aplicação web de e‑commerce desenvolvida com foco em **navegação simples**, **velocidade**, **componentização** e **boa arquitetura de desenvolvimento**.  
 O projeto foi construído seguindo princípios modernos de organização, testes, documentação e boas práticas gerais — ideal para crescimento futuro e escalabilidade.
